@@ -43,8 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Redireccionamos a auth_methods.dart después de 5 segundos
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => AuthMethods()),
