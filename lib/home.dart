@@ -8,6 +8,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      if (index == 1) { // Shop
+        Navigator.pushNamed(context, '/categories');
+      }
+      // Puedes agregar más condiciones para otros índices si tienes más elementos en el BottomNavigationBar
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,22 +33,21 @@ class _HomeScreenState extends State<HomeScreen> {
             placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
-          onPressed: () {
-          },
+          onPressed: () {},
         ),
         title: const Text('UnisexStyle'),
       ),
       body: ListView(
         children: <Widget>[
           const Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Text(
               'Bienvenido de nuevo',
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontFamily: 'DancingScript'),
             ),
           ),
           const Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Text(
               'Últimos productos',
               style: TextStyle(fontSize: 18),
@@ -89,6 +100,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Colors.black,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
